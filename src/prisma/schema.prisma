@@ -1,0 +1,97 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Get a free hosted Postgres database in seconds: `npx create-db`
+
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+enum Role {
+  ADMIN
+  SDM
+  EMPLOYEE
+}
+
+enum RequestStatus {
+  PENDING
+  APPROVED
+  REJECTED
+}
+
+model User {
+  id          String   @id @default(cuid())
+  username    String   @unique
+  password    String
+  role        Role     @default(EMPLOYEE)
+
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  travelRequests TravelRequest[] @relation("RequestCreator")
+
+  approvedRequests TravelRequest[] @relation("RequestApprover")
+}
+
+model City {
+  id              String @id @default(cuid())
+
+  name            String
+  latitude        Float
+  longitude       Float
+
+  province        String
+  island          String
+
+  isInternational Boolean @default(false)
+
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  departures      TravelRequest[] @relation("DepartureCity")
+  destinations    TravelRequest[] @relation("DestinationCity")
+}
+
+model TravelRequest {
+  id                  String @id @default(cuid())
+
+  userId              String
+  user                User @relation("RequestCreator",fields: [userId],references: [id])
+
+  purpose             String
+
+  departureDate       DateTime
+  returnDate          DateTime
+
+  originCityId        String
+  originCity          City @relation("DepartureCity",fields: [originCityId],references: [id])
+
+  destinationCityId   String
+  destinationCity     City @relation("DestinationCity",fields: [destinationCityId],references: [id])
+
+  durationDays        Int
+
+  isOutOfProvince     Boolean @default(false)
+  isInternational     Boolean @default(false)
+
+  totalDistanceKm     Float
+
+  totalCost           Float
+
+  status              RequestStatus @default(PENDING)
+
+  approvedById        String?
+  approvedBy          User? @relation("RequestApprover",fields: [approvedById],references: [id])
+
+  approvalNote        String?
+
+  approvedAt          DateTime?
+
+  createdAt           DateTime @default(now())
+  updatedAt           DateTime @updatedAt
+}
