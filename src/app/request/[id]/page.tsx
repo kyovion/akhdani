@@ -116,7 +116,7 @@ export default async function RequestDetailPage({
           >
             <button
               type="submit"
-              className="bg-green-600 text-white px-4 py-2 rounded"
+              className="bg-green-600 text-white px-4 py-2 rounded cursor-pointer"
             >
               Approve
             </button>
@@ -131,7 +131,7 @@ export default async function RequestDetailPage({
           >
             <button
               type="submit"
-              className="bg-red-600 text-white px-4 py-2 rounded"
+              className="bg-red-600 text-white px-4 py-2 rounded cursor-pointer"
             >
               Reject
             </button>
