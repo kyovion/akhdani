@@ -121,3 +121,31 @@ export async function createTravelRequest(formData: FormData) {
 
   revalidatePath('/requests')
 }
+
+export async function approveRequest(id: string) {
+  await db.travelRequest.update({
+    where: {
+      id,
+    },
+    data: {
+      status: 'APPROVED',
+      approvedAt: new Date(),
+    },
+  })
+
+  revalidatePath('/requests')
+}
+
+export async function rejectRequest(id: string) {
+  await db.travelRequest.update({
+    where: {
+      id,
+    },
+    data: {
+      status: 'REJECTED',
+      approvedAt: new Date(),
+    },
+  })
+
+  revalidatePath('/requests')
+}

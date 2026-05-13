@@ -25,6 +25,10 @@ export default function Navbar() {
             <Link href="/request/create">
                 Request Perdin
             </Link>
+            {` || `}
+            <Link href="/request">
+                List Request Perdin
+            </Link>
             </div>
         </div>
         </nav>
