@@ -13,9 +13,13 @@ export default function Navbar() {
             <Link href="/">
                 Home
             </Link>
-
+            {` || `}
             <Link href="/admin/users">
                 Admin Users
+            </Link>
+            {` || `}
+            <Link href="/admin/cities">
+                Cities
             </Link>
             </div>
         </div>
