@@ -6,7 +6,7 @@ export default function Navbar() {
         <nav className="border-b bg-white">
         <div className="mx-auto flex max-w-7xl items-center justify-between p-4">
             <h1 className="text-xl font-bold">
-            Travel App
+            Perjalanan Dinas
             </h1>
 
             <div className="flex gap-4">
@@ -19,7 +19,11 @@ export default function Navbar() {
             </Link>
             {` || `}
             <Link href="/admin/cities">
-                Cities
+                Kota
+            </Link>
+            {` || `}
+            <Link href="/request/create">
+                Request Perdin
             </Link>
             </div>
         </div>

@@ -110,50 +110,6 @@ export default async function AdminCitiesPage() {
                 </thead>
 
                 {/* <tbody>
-                  {cities.map((city) => (
-                    <tr
-                      key={city.id}
-                      className="border-b"
-                    >
-                      <td className="p-3">
-                        {city.name}
-                      </td>
-
-                      <td className="p-3">
-                        {city.province}
-                      </td>
-
-                      <td className="p-3">
-                        {city.island}
-                      </td>
-
-                      <td className="p-3">
-                        {city.isInternational
-                          ? 'Yes'
-                          : 'No'}
-                      </td>
-
-                      <td className="p-3">
-                        <form action={deleteCity}>
-                          <input
-                            type="hidden"
-                            name="cityId"
-                            value={city.id}
-                          />
-
-                          <button
-                            type="submit"
-                            className="rounded-lg bg-red-500 px-3 py-2 text-sm text-white"
-                          >
-                            Delete
-                          </button>
-                        </form>
-                      </td>
-                    </tr>
-                  ))}
-                </tbody> */}
-
-                <tbody>
                     {cities.map((city) => (
                         <tr
                         key={city.id}
@@ -247,7 +203,104 @@ export default async function AdminCitiesPage() {
                         </td>
                         </tr>
                     ))}
+                </tbody> */}
+
+                <tbody>
+                    {cities.map((city) => (
+                        <tr
+                        key={city.id}
+                        className="border-b"
+                        >
+                            <td colSpan={5} className="p-3">
+                                <form
+                                action={updateCity}
+                                className="grid gap-3 lg:grid-cols-6"
+                                >
+                                <input
+                                    type="hidden"
+                                    name="cityId"
+                                    value={city.id}
+                                />
+
+                                <input
+                                    type="text"
+                                    name="name"
+                                    defaultValue={city.name}
+                                    className="rounded-lg border p-2"
+                                />
+
+                                <input
+                                    type="text"
+                                    name="province"
+                                    defaultValue={city.province}
+                                    className="rounded-lg border p-2"
+                                />
+
+                                <input
+                                    type="text"
+                                    name="island"
+                                    defaultValue={city.island}
+                                    className="rounded-lg border p-2"
+                                />
+
+                                <input
+                                    type="number"
+                                    step="any"
+                                    name="latitude"
+                                    defaultValue={city.latitude}
+                                    className="rounded-lg border p-2"
+                                />
+
+                                <input
+                                    type="number"
+                                    step="any"
+                                    name="longitude"
+                                    defaultValue={city.longitude}
+                                    className="rounded-lg border p-2"
+                                />
+
+                                <label className="flex items-center gap-2">
+                                    <input
+                                    type="checkbox"
+                                    name="isInternational"
+                                    defaultChecked={city.isInternational}
+                                    />
+
+                                    <span>Luar Negeri</span>
+                                </label>
+
+                                <div className="flex gap-2">
+                                    <button
+                                    type="submit"
+                                    className="rounded-lg bg-black px-3 py-2 text-sm text-white"
+                                    >
+                                    Update
+                                    </button>
+                                </div>
+                                </form>
+
+                                <form
+                                action={deleteCity}
+                                className="mt-2"
+                                >
+                                <input
+                                    type="hidden"
+                                    name="cityId"
+                                    value={city.id}
+                                />
+
+                                <button
+                                    type="submit"
+                                    className="rounded-lg bg-red-500 px-3 py-2 text-sm text-white"
+                                >
+                                    Delete
+                                </button>
+                                </form>
+                            </td>
+                        </tr>
+                    ))}
                 </tbody>
+
               </table>
             </div>
           </div>

@@ -77,6 +77,7 @@ model TravelRequest {
   durationDays        Int
 
   isOutOfProvince     Boolean @default(false)
+  isOutOfIsland         Boolean @default(false)
   isInternational     Boolean @default(false)
 
   totalDistanceKm     Float
