@@ -86,7 +86,7 @@ export default async function RequestDetailPage({
 
         <div>
           <strong>Total Hari:</strong>{' '}
-          {request.durationDays} days
+          {request.durationDays} hari
         </div>
 
         <div>

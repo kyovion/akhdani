@@ -55,10 +55,10 @@ export async function createTravelRequest(formData: FormData) {
 
   const totalDistanceKm =Number(
   calculateDistanceKm(
-    originCity.latitude,
-    originCity.longitude,
-    destinationCity.latitude,
-    destinationCity.longitude
+    Number(originCity.latitude),
+    Number(originCity.longitude),
+    Number(destinationCity.latitude),
+    Number(destinationCity.longitude)
   ).toFixed(2))
 
   let totalCost = 0;

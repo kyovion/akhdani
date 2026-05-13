@@ -1,5 +1,5 @@
 function toRadians(degree: number) {
-  return degree * (Math.PI / 180)
+  return (degree * Math.PI) / 180
 }
 
 export function calculateDistanceKm(
@@ -10,16 +10,17 @@ export function calculateDistanceKm(
 ) {
   const earthRadiusKm = 6371
 
-  const dLat = toRadians(lat2 - lat1)
-  const dLon = toRadians(lon2 - lon1)
+  const latitudeDistance =
+    toRadians(lat2 - lat1)
+
+  const longitudeDistance =
+    toRadians(lon2 - lon1)
 
   const a =
-    Math.sin(dLat / 2) *
-      Math.sin(dLat / 2) +
+    Math.sin(latitudeDistance / 2) ** 2 +
     Math.cos(toRadians(lat1)) *
       Math.cos(toRadians(lat2)) *
-      Math.sin(dLon / 2) *
-      Math.sin(dLon / 2)
+      Math.sin(longitudeDistance / 2) ** 2
 
   const c =
     2 *
@@ -28,5 +29,8 @@ export function calculateDistanceKm(
       Math.sqrt(1 - a)
     )
 
-  return earthRadiusKm * c
+  const distance =
+    earthRadiusKm * c
+
+  return Math.round(distance * 100) / 100
 }
