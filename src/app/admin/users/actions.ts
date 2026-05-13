@@ -1,8 +1,8 @@
 'use server'
 
 import bcrypt from 'bcrypt'
-
 import db from '@/lib/prisma'
+import { revalidatePath } from 'next/cache'
 
 export async function createUser(formData: FormData) {
   const username = formData.get('username') as string
@@ -32,6 +32,8 @@ export async function createUser(formData: FormData) {
       role: role as any,
     },
   })
+
+  revalidatePath('/admin/users')
 }
 
 export async function updateUserRole(formData: FormData) {
@@ -50,4 +52,22 @@ export async function updateUserRole(formData: FormData) {
       role: role as any,
     },
   })
+
+  revalidatePath('/admin/users')
+}
+
+export async function deleteUser(formData: FormData) {
+  const userId = formData.get('userId') as string
+
+  if (!userId) {
+    throw new Error('User tidak ditemukan')
+  }
+
+  await db.user.delete({
+    where: {
+      id: userId,
+    },
+  })
+
+  revalidatePath('/admin/users')
 }
