@@ -50,52 +50,52 @@ export default async function RequestDetailPage({
     <Navbar />
     <div className="p-6 max-w-2xl">
       <h1 className="text-2xl font-bold mb-6">
-        Request Detail
+        Detail Perdin
       </h1>
 
       <div className="space-y-4 border p-4 rounded">
         <div>
-          <strong>User:</strong>{' '}
+          <strong>Nama:</strong>{' '}
           {request.user.username}
         </div>
 
         <div>
-          <strong>Purpose:</strong>{' '}
+          <strong>Tujuan:</strong>{' '}
           {request.purpose}
         </div>
 
         <div>
-          <strong>Origin:</strong>{' '}
+          <strong>Kota Asal:</strong>{' '}
           {request.originCity.name}
         </div>
 
         <div>
-          <strong>Destination:</strong>{' '}
+          <strong>Kota Tujuan:</strong>{' '}
           {request.destinationCity.name}
         </div>
 
         <div>
-          <strong>Departure:</strong>{' '}
+          <strong>Tanggal Berangkat:</strong>{' '}
           {request.departureDate.toLocaleDateString()}
         </div>
 
         <div>
-          <strong>Return:</strong>{' '}
+          <strong>Tanggal Pulang:</strong>{' '}
           {request.returnDate.toLocaleDateString()}
         </div>
 
         <div>
-          <strong>Duration:</strong>{' '}
+          <strong>Total Hari:</strong>{' '}
           {request.durationDays} days
         </div>
 
         <div>
-          <strong>Distance:</strong>{' '}
+          <strong>Jarak Tempuh:</strong>{' '}
           {request.totalDistanceKm} km
         </div>
 
         <div>
-          <strong>Total cost:</strong>{' '}
+          <strong>Total Uang Perdin:</strong>{' '}
           {request.isInternational ? (<label>USD</label>) : (<label>Rp</label>)} {request.totalCost}
         </div>
 

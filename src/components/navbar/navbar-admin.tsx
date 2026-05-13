@@ -18,7 +18,7 @@ export default async function Navbar() {
 
             {session && session.role == 'ADMIN' &&(
             <Link href="/admin/users" className="bg-red-500 text-white cursor-pointer rounded">
-                Admin Users
+                Users
             </Link>
             )}
 

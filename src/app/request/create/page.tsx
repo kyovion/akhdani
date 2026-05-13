@@ -17,7 +17,6 @@ export default async function CreateRequestPage() {
       redirect('/login')
     }
     
-
   return (
     <>
     <Navbar />
@@ -31,13 +30,10 @@ export default async function CreateRequestPage() {
         className="space-y-4"
       >
         <div>
-          <label className="block mb-1">
-            User ID
-          </label>
-
           <input
-            type="text"
+            type="hidden"
             name="userId"
+            value={session.userId}
             className="border p-2 w-full"
             required
           />
@@ -45,7 +41,7 @@ export default async function CreateRequestPage() {
 
         <div>
           <label className="block mb-1">
-            Purpose
+            Tujuan
           </label>
 
           <textarea
@@ -57,7 +53,7 @@ export default async function CreateRequestPage() {
 
         <div>
           <label className="block mb-1">
-            Origin City
+            Kota Asal
           </label>
 
           <select
@@ -66,7 +62,7 @@ export default async function CreateRequestPage() {
             required
           >
             <option value="">
-              Select City
+              Pilih Kota
             </option>
 
             {cities.map((city) => (
@@ -82,7 +78,7 @@ export default async function CreateRequestPage() {
 
         <div>
           <label className="block mb-1">
-            Destination City
+            Kota Tujuan
           </label>
 
           <select
@@ -91,7 +87,7 @@ export default async function CreateRequestPage() {
             required
           >
             <option value="">
-              Select City
+              Pilih Kota
             </option>
 
             {cities.map((city) => (
@@ -107,7 +103,7 @@ export default async function CreateRequestPage() {
 
         <div>
           <label className="block mb-1">
-            Departure Date
+            Tanggal Awal
           </label>
 
           <input
@@ -120,7 +116,7 @@ export default async function CreateRequestPage() {
 
         <div>
           <label className="block mb-1">
-            Return Date
+            Tanggal Akhir
           </label>
 
           <input

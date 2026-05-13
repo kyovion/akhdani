@@ -43,15 +43,15 @@ export default async function RequestsPage() {
             </th>
 
             <th className="border p-2">
-              Origin
+              Kota
             </th>
 
             <th className="border p-2">
-              Destination
+              Tanggal
             </th>
 
             <th className="border p-2">
-              Duration
+              Keterangan
             </th>
 
             <th className="border p-2">
@@ -72,15 +72,15 @@ export default async function RequestsPage() {
               </td>
 
               <td className="border p-2">
-                {request.originCity.name}
+                {request.originCity.name} &rarr; {request.destinationCity.name}
               </td>
 
               <td className="border p-2">
-                {request.destinationCity.name}
+                {new Date(request.departureDate).toLocaleDateString('id-ID')} - {new Date(request.returnDate).toLocaleDateString('id-ID')}  ( {request.durationDays} hari)
               </td>
 
               <td className="border p-2">
-                {request.durationDays} days
+                {request.purpose}
               </td>
 
               <td className="border p-2">

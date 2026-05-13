@@ -282,7 +282,7 @@ export default async function AdminCitiesPage() {
                                 <div className="flex gap-2">
                                     <button
                                     type="submit"
-                                    className="rounded-lg bg-black px-3 py-2 text-sm text-white"
+                                    className="rounded-lg bg-black px-3 py-2 text-sm text-white cursor-pointer"
                                     >
                                     Update
                                     </button>
@@ -301,7 +301,7 @@ export default async function AdminCitiesPage() {
 
                                 <button
                                     type="submit"
-                                    className="rounded-lg bg-red-500 px-3 py-2 text-sm text-white"
+                                    className="rounded-lg bg-red-500 px-3 py-2 text-sm text-white cursor-pointer"
                                 >
                                     Delete
                                 </button>
