@@ -1,6 +1,9 @@
 import db from '@/lib/prisma'
 import { createTravelRequest } from '../actions'
 import Navbar from '@/components/navbar/navbar-admin'
+import { redirect } from 'next/navigation'
+import { getSession } from '@/lib/session'
+
 
 export default async function CreateRequestPage() {
   const cities = await db.city.findMany({
@@ -8,6 +11,12 @@ export default async function CreateRequestPage() {
       name: 'asc',
     },
   })
+
+  const session = await getSession()
+    if (!session) {
+      redirect('/login')
+    }
+    
 
   return (
     <>

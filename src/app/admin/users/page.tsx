@@ -1,4 +1,6 @@
 import db from '@/lib/prisma'
+import { redirect } from 'next/navigation'
+import { getSession } from '@/lib/session'
 
 import Navbar from '@/components/navbar/navbar-admin'
 
@@ -14,6 +16,14 @@ export default async function AdminUsersPage() {
       createdAt: 'desc',
     },
   })
+
+  const session = await getSession()
+  if (!session) {
+    redirect('/login')
+  }
+  if (session.role !== 'ADMIN') {
+    redirect('/')
+  }
 
   return (
     <main className="min-h-screen bg-slate-100">

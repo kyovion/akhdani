@@ -1,6 +1,8 @@
 import Link from 'next/link'
+import { getSession } from '@/lib/session'
 
-export default function Navbar() {
+export default async function Navbar() {
+  const session = await getSession()
   return (
     <>
         <nav className="border-b bg-white">
@@ -10,25 +12,52 @@ export default function Navbar() {
             </h1>
 
             <div className="flex gap-4">
-            <Link href="/">
+            <Link href="/" className="bg-red-500 text-white cursor-pointer rounded">
                 Home
             </Link>
-            {` || `}
-            <Link href="/admin/users">
+
+            {session && session.role == 'ADMIN' &&(
+            <Link href="/admin/users" className="bg-red-500 text-white cursor-pointer rounded">
                 Admin Users
             </Link>
-            {` || `}
-            <Link href="/admin/cities">
+            )}
+
+            {session && session.role == 'ADMIN' &&(
+            <Link href="/admin/cities" className="bg-red-500 text-white cursor-pointer rounded">
                 Kota
             </Link>
-            {` || `}
-            <Link href="/request/create">
+            )}
+
+            {session &&(
+            <Link href="/request/create" className="bg-red-500 text-white cursor-pointer rounded">
                 Request Perdin
             </Link>
-            {` || `}
-            <Link href="/request">
+            )}
+
+            {session && (session.role == 'ADMIN' || session.role == 'SDM') &&(
+            <Link href="/request" className="bg-red-500 text-white cursor-pointer rounded">
                 List Request Perdin
             </Link>
+            )}
+
+            {session &&(
+            <div className="bg-red-500 text-white rounded">
+                Login sebagai: {session?.username}
+            </div>
+            )}
+            
+            {!session &&(
+            <Link href="/login" className="bg-red-500 text-white cursor-pointer rounded">
+                Login
+            </Link>)
+            }
+            {session &&(
+            <form action="/api/auth/logout" method="POST">
+                <button className="bg-red-500 text-white cursor-pointer rounded">
+                    Logout
+                </button>
+            </form>
+            )}
             </div>
         </div>
         </nav>

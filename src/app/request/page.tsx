@@ -1,6 +1,8 @@
 import Link from 'next/link'
 import db from '@/lib/prisma'
 import Navbar from '@/components/navbar/navbar-admin'
+import { redirect } from 'next/navigation'
+import { getSession } from '@/lib/session'
 
 export default async function RequestsPage() {
   const requests =
@@ -14,6 +16,16 @@ export default async function RequestsPage() {
         createdAt: 'desc',
       },
     })
+  
+  const session = await getSession()
+    if (!session) {
+      redirect('/login')
+    }
+
+    if (session.role !== 'ADMIN' && session.role !== 'SDM' ) {
+      redirect('/')
+    }
+  
 
   return (
     <>

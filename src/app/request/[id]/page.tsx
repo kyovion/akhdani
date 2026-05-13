@@ -1,6 +1,8 @@
 import { notFound } from 'next/navigation'
 import db from '@/lib/prisma'
 import Navbar from '@/components/navbar/navbar-admin'
+import { redirect } from 'next/navigation'
+import { getSession } from '@/lib/session'
 
 import {
   approveRequest,
@@ -17,6 +19,14 @@ export default async function RequestDetailPage({
   params,
 }: Props) {
   const { id } = await params
+
+  const session = await getSession()
+  if (!session) {
+    redirect('/login')
+  }
+  if (session.role !== 'ADMIN' && session.role !== 'SDM' ) {
+    redirect('/')
+  }
 
   const request =
     await db.travelRequest.findUnique({
