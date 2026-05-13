@@ -14,6 +14,12 @@ export default function HomePage() {
           <p className="text-slate-600">
             Sistem pengajuan dan approval perjalanan dinas.
           </p>
+
+          <p className="text-slate-600"> --User-- | --Pwd-- </p>
+          <p className="text-slate-600"> admin | admin </p>
+          <p className="text-slate-600"> sdm | sdm </p>
+          <p className="text-slate-600"> user1 | user1 </p>
+
         </div>
       </section>
     </main>
